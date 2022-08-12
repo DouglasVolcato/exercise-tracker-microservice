@@ -114,7 +114,7 @@ app.post("/api/users/:_id/exercises", async (req, res) => {
 
 //Get user exercises by id endpoint
 app.get("/api/users/:_id/logs", (req, res) => {
-
+  
   //Find user by id
   User.findById(req.params._id).then((result) => {
     let resObj = result;
