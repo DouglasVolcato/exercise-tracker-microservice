@@ -97,7 +97,11 @@ app.post("/api/users/:_id/exercises", async (req, res) => {
   await exercise.save();
 
   //find and update user by id, add new exercise in its profile
-  User.findByIdAndUpdate(req.params._id, { $push: { log: exercise } })
+  User.findByIdAndUpdate(
+    req.params._id,
+    { $push: { log: exercise } },
+    { new: true }
+  )
 
     //then respond with the new exercise added and the user of reference
     .then((result) => {
@@ -114,7 +118,6 @@ app.post("/api/users/:_id/exercises", async (req, res) => {
 
 //Get user exercises by id endpoint
 app.get("/api/users/:_id/logs", (req, res) => {
-  
   //Find user by id
   User.findById(req.params._id).then((result) => {
     let resObj = result;
